@@ -424,7 +424,6 @@ $locale['choose-user'] = "Please Choose a User...";
 $locale['choose-location'] = "Please Choose a Location";
 $locale['parent'] = "Create as New Parent..";
 $locale['order'] = "Item Ordering";
-$locale['status'] = "Status";
 $locale['note'] = "Make a note of this item";
 $locale['publish'] = "Published";
 $locale['unpublish'] = "Unpublished";
