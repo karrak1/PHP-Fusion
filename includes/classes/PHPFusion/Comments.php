@@ -216,13 +216,15 @@ class Comments {
             FROM ".DB_COMMENTS." tcm
             LEFT JOIN ".DB_USERS." tcu ON tcm.comment_name=tcu.user_id
             WHERE comment_item_id='".$comment_item_id."' AND comment_type='".$comment_type."' AND comment_hidden='0'
-            ORDER BY comment_datestamp ".$this->settings['comments_sorting'].", comment_cat DESC";
+            ORDER BY comment_datestamp ".$this->settings['comments_sorting'].", comment_cat DESC
+            LIMIT ".$_GET['c_start'].",".$cpp;
 
             $query = dbquery($comment_query);
 
             if (dbrows($query) > 0) :
 
-                $i = ($this->settings['comments_sorting'] == "ASC" ? $_GET['c_start'] + 1 : $c_rows - $_GET['c_start']);
+                $i = 0;
+                ($this->settings['comments_sorting'] == "ASC" ? $_GET['c_start'] + 1 : $c_rows - $_GET['c_start']);
 
                 if ($c_rows > $cpp) {
                     $this->c_arr['c_info']['c_makepagenav'] = makepagenav($_GET['c_start'], $cpp, $c_rows, 3, $clink."&amp;", "c_start");
@@ -349,7 +351,7 @@ class Comments {
                 // Pass cpp settings
                 $this->c_arr['c_info']['comments_per_page'] = $cpp;
 
-                $this->c_arr['c_info']['comments_count'] = format_word(number_format($i - 1, 0), $this->locale['fmt_comment']);
+                $this->c_arr['c_info']['comments_count'] = format_word(number_format($i, 0), $this->locale['fmt_comment']);
 
             endif;
 
