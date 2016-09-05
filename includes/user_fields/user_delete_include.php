@@ -13,7 +13,7 @@ if ($profile_method == "input") {
 
 // Display in profile
 } elseif ($profile_method == "display") {
-    if (defined('ADMIN_PANEL')) {
+    if (!defined('ADMIN_PANEL')) {
 
     if (iMEMBER && isset($_POST['delete_me']) && fusion_get_userdata('user_id') == $_GET['lookup'] && !iSUPERADMIN) {
         $data = fusion_get_userdata('user_id');
